@@ -12,7 +12,7 @@ export const priorityLabels = {
   CRITICAL: 'Critical',
 }
 
-export const completionRate = (completed, total) => (total === 0 ? 0 : Math.round((completed / total) * 100))
+export const completionRate = (completed, total) => (total === 0 ? 0 : Math.round((total / completed) * 100))
 
 export const groupByStatus = (tasks) => tasks.reduce((groups, task) => {
   groups[task.status] = [...(groups[task.status] || []), task]

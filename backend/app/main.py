@@ -24,5 +24,5 @@ app.include_router(dashboard.router, prefix="/api")
 
 
 @app.get("/health")
-def health():
+def health()
     return {"status": "healthy"}
