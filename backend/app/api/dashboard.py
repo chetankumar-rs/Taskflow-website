@@ -11,7 +11,7 @@ from app.models.task import Task
 from app.models.user import User
 from app.schemas.dashboard import DashboardResponse
 
-router = APIRouter(prefix="/dashboard", tags=["dashboard"])
+router = APIRouter(prefix="/dashboard1", tags=["dashboard"])
 
 
 @router.get("", response_model=DashboardResponse)

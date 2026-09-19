@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link, NavLink, Navigate, Route, Routes, useNavigate, useParams } from 'react-router-dom'
 import { BarChart3, CheckCircle2, ChevronDown, CirclePlus, ClipboardList, FolderKanban, LayoutDashboard, LogOut, Menu, Moon, Plus, Search, Settings2, Sparkles, Sun, UserRound, X } from 'lucide-react'
 import { authApi, projectApi, taskApi } from './services/api'
@@ -19,6 +19,8 @@ function App() {
   const [mobileNav, setMobileNav] = useState(false)
   const data = useTaskflowData()
   const { theme, toggleTheme } = useTheme()
+
+  if (window.location.pathname === '/health') return <Health />
 
   const logout = () => {
     localStorage.removeItem('taskflow_token')
@@ -47,6 +49,19 @@ function App() {
       </main>
     </div>
   ) : <Auth onAuthenticated={setUser} />
+}
+
+function Health() {
+  const [status, setStatus] = useState('Checking...')
+
+  useEffect(() => {
+    fetch('http://localhost:8000/health')
+      .then((response) => response.ok ? response.json() : Promise.reject())
+      .then((result) => setStatus(result.status || 'healthy'))
+      .catch(() => setStatus('unavailable'))
+  }, [])
+
+  return <main className="health-page"><div className="health-card"><span className="eyebrow">TaskFlow API</span><h1>Health check</h1><p className={status === 'healthy' ? 'health-ok' : ''}>{status}</p></div></main>
 }
 
 function Sidebar({ user, logout, mobileNav, closeMobile }) {
