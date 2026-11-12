@@ -20,7 +20,7 @@ function App() {
   const data = useTaskflowData()
   const { theme, toggleTheme } = useTheme()
 
-  if (window.location.pathname === '/health') return <Health />
+// Remove this line and register <Route path="/health" element={<Health />} /> inside <Routes>
 
   const logout = () => {
     localStorage.removeItem('taskflow_token')
