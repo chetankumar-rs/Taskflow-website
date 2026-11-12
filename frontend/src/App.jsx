@@ -55,7 +55,7 @@ function Health() {
   const [status, setStatus] = useState('Checking...')
 
   useEffect(() => {
-    fetch('http://localhost:8000/health')
+fetch('/health')
       .then((response) => response.ok ? response.json() : Promise.reject())
       .then((result) => setStatus(result.status || 'healthy'))
       .catch(() => setStatus('unavailable'))
