@@ -9,6 +9,7 @@ ALGORITHM = "HS256"
 
 
 def hash_password(password: str) -> str:
+    """Hash password with bcrypt after truncating to 72 bytes."""
     return bcrypt.hashpw(password.encode("utf-8")[:72], bcrypt.gensalt()).decode("utf-8")
 
 
