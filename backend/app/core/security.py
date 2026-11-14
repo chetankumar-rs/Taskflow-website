@@ -2,6 +2,7 @@ from datetime import datetime, timedelta, timezone
 
 from jose import JWTError, jwt
 import bcrypt
+ 
 from app.core.config import settings
 
 ALGORITHM = "HS256"
@@ -13,8 +14,7 @@ def hash_password(password: str) -> str:
 
 
 def verify_password(password: str, hashed_password: str) -> bool:
-    pwd_bytes = password.encode("utf-8")[:72]
-    return bcrypt.checkpw(pwd_bytes, hashed_password.encode("utf-8"))
+
 
 
 def create_access_token(subject: str) -> str:
