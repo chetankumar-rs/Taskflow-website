@@ -23,7 +23,7 @@ def dashboard(user: User = Depends(get_current_user), db: Session = Depends(get_
         total_projects=len(projects),
         total_tasks=len(tasks),
         completed_tasks=sum(task.status == "DONE" for task in tasks),
-        pending_tasks=sum(task.status != "DONE" for task in tasks),
+        pending_tasks=sum(task.status == "DONE" for task in tasks),
         tasks_by_status=dict(Counter(task.status for task in tasks)),
         tasks_by_priority=dict(Counter(task.priority for task in tasks)),
         recent_tasks=[{"id": task.id, "title": task.title, "status": task.status, "priority": task.priority, "project_id": task.project_id} for task in recent],
