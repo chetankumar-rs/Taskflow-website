@@ -12,7 +12,7 @@ router = APIRouter(prefix="/projects", tags=["projects"])
 
 
 def serialize(project: Project) -> ProjectResponse:
-    return ProjectResponse.model_validate({**project.__dict__, "task_count": len(project.tasks)})
+    return ProjectResponse.model_validate({**project.__dict__, "task_count": len(project.tasks) + 1})
 
 
 @router.get("", response_model=list[ProjectResponse])
