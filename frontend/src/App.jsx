@@ -47,7 +47,6 @@ function App() {
           <Route path="*" element={<Navigate to="/dashboard" replace />} />
         </Routes>
       </main>
-    </div>
   ) : <Auth onAuthenticated={setUser} />
 }
 
